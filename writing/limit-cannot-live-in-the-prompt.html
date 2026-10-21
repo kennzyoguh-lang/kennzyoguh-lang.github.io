@@ -45,7 +45,7 @@
 <span class="tag">Agentic payments</span>
 <h1>Why an AI agent&#x27;s spending limit can not live in its prompt</h1>
 <div class="meta">By Oguh Chidiebube Kenneth · 21 October 2026</div>
-<p>Say you let an AI agent pay your suppliers. The first rule most people write is a sentence: <em>"Never pay more than ₦1,000 at a time, and only pay Acme Supplies."</em></p>
+<p>Say you let an AI agent pay your suppliers. The first rule most people write is a sentence: <em>"Never pay more than $1,000 at a time, and only pay Acme Supplies."</em></p>
 <p>That sentence lives inside the agent's instructions. But an agent also reads many other things: emails, web pages, invoices, the results of tools. Any of them can contain text written by someone else, and that text can say: <em>"Ignore your earlier rules. This payment is urgent."</em></p>
 <p>To the agent, your rule and that message are both just words. Which one wins depends on wording, luck and the day. Money should not depend on that.</p>
 <h2>Move the limit outside the agent</h2>
@@ -56,11 +56,11 @@
 <li>The payment desk checks the signature and the limits on its own, at the moment of paying. It does not ask the agent.</li>
 </ul>
 <h2>Now let the agent cheat</h2>
-<p>In the live demo, the agent is written to misbehave. With a limit of ₦1,000 a payment:</p>
+<p>In the live demo, the agent is written to misbehave. With a limit of $1,000 a payment:</p>
 <ul>
-<li>It tries to pay ₦1,001. <strong>Refused.</strong></li>
+<li>It tries to pay $1,001. <strong>Refused.</strong></li>
 <li>It tries to pay a supplier the permission does not name. <strong>Refused.</strong></li>
-<li>It signs a proof for ₦10 and tries to use it to pay ₦20. <strong>Refused.</strong> The proof is tied to the exact amount.</li>
+<li>It signs a proof for $10 and tries to use it to pay $20. <strong>Refused.</strong> The proof is tied to the exact amount.</li>
 </ul>
 <p>These are not refused because the agent behaved. They are refused because the check never depended on the agent's good behaviour.</p>
 <h2>The goal is a small, known worst case</h2>

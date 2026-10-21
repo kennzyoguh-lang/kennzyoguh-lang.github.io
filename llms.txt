@@ -1,0 +1,13 @@
+# Oguh Chidiebube Kenneth
+
+> Founder of Kaldrix and Zentrix, the trust layer for AI agents that move money. Writes about agentic payments, financial AI infrastructure, data architecture and data engineering.
+
+## Writing
+- [Why an AI agent's spending limit can not live in its prompt](https://kennzyoguh-lang.github.io/writing/limit-cannot-live-in-the-prompt.html)
+- [Never guess with money: why a payment system must be able to say "unknown"](https://kennzyoguh-lang.github.io/writing/never-guess-with-money.html)
+- [The mathematics of safe delegation: permissions can only shrink](https://kennzyoguh-lang.github.io/writing/permissions-can-only-shrink.html)
+
+## Links
+- [Kaldrix and Zentrix](https://kennzyoguh-lang.github.io/kaldrix-zentrix/)
+- [LinkedIn](https://www.linkedin.com/in/chidiebube-oguh-50422222b/)
+- [GitHub](https://github.com/kennzyoguh-lang)

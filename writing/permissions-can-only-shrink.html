@@ -47,13 +47,13 @@
 <div class="meta">By Oguh Chidiebube Kenneth · 21 October 2026</div>
 <p>Here is a small idea from mathematics that makes a security system much easier to trust.</p>
 <h2>A permission is a set</h2>
-<p>Think of a permission as the set of all payments it would allow. "Pay Acme Supplies, up to ₦1,000 a payment, for 30 minutes" is a set. Every payment either belongs to it or does not.</p>
+<p>Think of a permission as the set of all payments it would allow. "Pay Acme Supplies, up to $1,000 a payment, for 30 minutes" is a set. Every payment either belongs to it or does not.</p>
 <h2>Handing it on can only shrink the set</h2>
 <p>Say an agent wants to give a helper part of its authority. In Kaldrix, the new permission must be a <strong>subset</strong> of the one it came from: the same suppliers or fewer, an amount that is the same or smaller, a time that is the same or shorter. If you write the original as <em>P</em> and the new one as <em>Q</em>, the rule is simply: Q is inside P.</p>
 <p>The dashboard says it plainly: a permission can be handed on a couple of times, "always smaller".</p>
 <h2>A chain can only get narrower</h2>
 <p>Now pass it along more than once: P₀, then P₁ inside P₀, then P₂ inside P₁. Each link sits inside the one before. The authority never grows as it travels.</p>
-<p>That gives a clean result. For one chain, no link can ever spend more than the <strong>smallest limit along the chain</strong>. If the first hand had ₦2,000, the second ₦1,000 and the third ₦300, the third can never move more than ₦300, whatever anyone does. The narrowest link sets the bound.</p>
+<p>That gives a clean result. For one chain, no link can ever spend more than the <strong>smallest limit along the chain</strong>. If the first hand had $2,000, the second $1,000 and the third $300, the third can never move more than $300, whatever anyone does. The narrowest link sets the bound.</p>
 <h2>Why this is a gift to engineers</h2>
 <p>Physicists lean on quantities that are conserved, because they let you reason about a system without simulating every detail. "Authority never grows" is that kind of rule. You do not have to check every path an agent might take. You only have to be sure that one rule holds at every handover.</p>
 <p>It is also the kind of rule that is easy to test: generate thousands of random permissions and random narrowing steps, and check that the new permission never allows a payment the old one forbade. If a single case breaks the rule, you have found the bug.</p>
