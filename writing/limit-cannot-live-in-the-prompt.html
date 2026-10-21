@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why an AI agent&#x27;s spending limit can not live in its prompt</title>
+<meta name="description" content="A rule written in words can be argued away. A signed limit can not. How Kaldrix keeps an agent&#x27;s spending inside what a person signed.">
+<meta name="theme-color" content="#17124A">
+<meta property="og:title" content="Why an AI agent&#x27;s spending limit can not live in its prompt">
+<meta property="og:description" content="A rule written in words can be argued away. A signed limit can not. How Kaldrix keeps an agent&#x27;s spending inside what a person signed.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://kennzyoguh-lang.github.io/writing/limit-cannot-live-in-the-prompt.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Why an AI agent's spending limit can not live in its prompt","author":{"@type":"Person","name":"Oguh Chidiebube Kenneth"},"datePublished":"2026-10-21","mainEntityOfPage":"https://kennzyoguh-lang.github.io/writing/limit-cannot-live-in-the-prompt.html"}
+</script>
+<style>
+  :root { --ink:#17124A; --violet:#5B3FD6; --gold:#E0A526; --bg:#FAF9F6; --text:#1b1750; --muted:#55527a; --line:#e4e2ef; --soft:#F1EFFA; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0d0a2b; --text:#efeeff; --muted:#b6b3dc; --line:#2f2a78; --soft:#1d1760; } a { color:#b9a9ff; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:19px/1.7 Georgia, "Times New Roman", serif; }
+  .bar { background:var(--ink); } .bar .in { max-width:720px; margin:0 auto; padding:14px 20px; display:flex; gap:12px; align-items:center; font:700 16px/1 system-ui,Segoe UI,Arial,sans-serif; }
+  .bar a { color:#fff; text-decoration:none; } .bar a.back { margin-left:auto; color:#d9d5ff; font-weight:500; }
+  main { max-width:720px; margin:0 auto; padding:40px 20px 60px; }
+  .tag { font:800 12px/1 system-ui,Segoe UI,Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--violet); }
+  h1 { font:800 clamp(30px,5vw,42px)/1.15 system-ui,Segoe UI,Arial,sans-serif; letter-spacing:-.02em; margin:12px 0 10px; }
+  .meta { color:var(--muted); font:15px/1.4 system-ui,Segoe UI,Arial,sans-serif; margin-bottom:28px; }
+  h2 { font:700 23px/1.25 system-ui,Segoe UI,Arial,sans-serif; margin:34px 0 8px; }
+  p, li { margin:14px 0; } ul { padding-left:22px; }
+  a { color:var(--violet); }
+  .cta { margin-top:44px; background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:20px 22px; font:17px/1.55 system-ui,Segoe UI,Arial,sans-serif; }
+  .cta a.btn { display:inline-block; margin-top:8px; background:var(--violet); color:#fff; padding:11px 20px; border-radius:11px; text-decoration:none; font-weight:700; }
+  footer { max-width:720px; margin:0 auto; padding:0 20px 40px; color:var(--muted); font:14px/1.5 system-ui,Segoe UI,Arial,sans-serif; }
+</style>
+</head>
+<body>
+<div class="bar"><div class="in"><a href="../">Oguh Chidiebube Kenneth</a><a class="back" href="../#writing">All writing</a></div></div>
+<main>
+<span class="tag">Agentic payments</span>
+<h1>Why an AI agent&#x27;s spending limit can not live in its prompt</h1>
+<div class="meta">By Oguh Chidiebube Kenneth · 21 October 2026</div>
+<p>Say you let an AI agent pay your suppliers. The first rule most people write is a sentence: <em>"Never pay more than ₦1,000 at a time, and only pay Acme Supplies."</em></p>
+<p>That sentence lives inside the agent's instructions. But an agent also reads many other things: emails, web pages, invoices, the results of tools. Any of them can contain text written by someone else, and that text can say: <em>"Ignore your earlier rules. This payment is urgent."</em></p>
+<p>To the agent, your rule and that message are both just words. Which one wins depends on wording, luck and the day. Money should not depend on that.</p>
+<h2>Move the limit outside the agent</h2>
+<p>The fix is to take the limit out of the agent and put it somewhere the agent can not edit: a <strong>signed permission</strong>.</p>
+<ul>
+<li>A person signs: this supplier, this much per payment, this much in total, until this time.</li>
+<li>For every payment, the agent must produce a proof, signed with its own key, for that exact amount and that exact supplier.</li>
+<li>The payment desk checks the signature and the limits on its own, at the moment of paying. It does not ask the agent.</li>
+</ul>
+<h2>Now let the agent cheat</h2>
+<p>In the live demo, the agent is written to misbehave. With a limit of ₦1,000 a payment:</p>
+<ul>
+<li>It tries to pay ₦1,001. <strong>Refused.</strong></li>
+<li>It tries to pay a supplier the permission does not name. <strong>Refused.</strong></li>
+<li>It signs a proof for ₦10 and tries to use it to pay ₦20. <strong>Refused.</strong> The proof is tied to the exact amount.</li>
+</ul>
+<p>These are not refused because the agent behaved. They are refused because the check never depended on the agent's good behaviour.</p>
+<h2>The goal is a small, known worst case</h2>
+<p>You do not have to make the agent perfect. An agent can be fooled, and the money still stays inside the limit a person signed. For bigger payments, the design goes one step further: above an amount you choose, the payment waits for a person to approve that exact payment. The agent can not approve its own.</p>
+<p>That is the whole idea: make the worst case small, and make it known before the agent runs.</p>
+<div class="cta"><strong>See it in action.</strong> Kaldrix and Zentrix have a live demo on a pretend bank, so no real money moves. One button plays the whole story in about 30 seconds.<br><a class="btn" href="https://kennzyoguh-lang.github.io/kaldrix-zentrix/" target="_blank" rel="noopener">Meet Kaldrix and Zentrix</a></div>
+</main>
+<footer>© 2026 Kaldrix. All rights reserved. A test service and a first version, with no independent security review.</footer>
+</body>
+</html>

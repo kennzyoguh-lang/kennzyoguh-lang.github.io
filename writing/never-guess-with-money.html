@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Never guess with money: why a payment system must be able to say &quot;unknown&quot;</title>
+<meta name="description" content="What to do when a bank does not answer, without paying twice or losing a payment. Why Zentrix records an honest &quot;unknown&quot; instead of guessing.">
+<meta name="theme-color" content="#17124A">
+<meta property="og:title" content="Never guess with money: why a payment system must be able to say &quot;unknown&quot;">
+<meta property="og:description" content="What to do when a bank does not answer, without paying twice or losing a payment. Why Zentrix records an honest &quot;unknown&quot; instead of guessing.">
+<meta property="og:type" content="article">
+<link rel="canonical" href="https://kennzyoguh-lang.github.io/writing/never-guess-with-money.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Never guess with money: why a payment system must be able to say \"unknown\"","author":{"@type":"Person","name":"Oguh Chidiebube Kenneth"},"datePublished":"2026-10-21","mainEntityOfPage":"https://kennzyoguh-lang.github.io/writing/never-guess-with-money.html"}
+</script>
+<style>
+  :root { --ink:#17124A; --violet:#5B3FD6; --gold:#E0A526; --bg:#FAF9F6; --text:#1b1750; --muted:#55527a; --line:#e4e2ef; --soft:#F1EFFA; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#0d0a2b; --text:#efeeff; --muted:#b6b3dc; --line:#2f2a78; --soft:#1d1760; } a { color:#b9a9ff; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:19px/1.7 Georgia, "Times New Roman", serif; }
+  .bar { background:var(--ink); } .bar .in { max-width:720px; margin:0 auto; padding:14px 20px; display:flex; gap:12px; align-items:center; font:700 16px/1 system-ui,Segoe UI,Arial,sans-serif; }
+  .bar a { color:#fff; text-decoration:none; } .bar a.back { margin-left:auto; color:#d9d5ff; font-weight:500; }
+  main { max-width:720px; margin:0 auto; padding:40px 20px 60px; }
+  .tag { font:800 12px/1 system-ui,Segoe UI,Arial,sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--violet); }
+  h1 { font:800 clamp(30px,5vw,42px)/1.15 system-ui,Segoe UI,Arial,sans-serif; letter-spacing:-.02em; margin:12px 0 10px; }
+  .meta { color:var(--muted); font:15px/1.4 system-ui,Segoe UI,Arial,sans-serif; margin-bottom:28px; }
+  h2 { font:700 23px/1.25 system-ui,Segoe UI,Arial,sans-serif; margin:34px 0 8px; }
+  p, li { margin:14px 0; } ul { padding-left:22px; }
+  a { color:var(--violet); }
+  .cta { margin-top:44px; background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:20px 22px; font:17px/1.55 system-ui,Segoe UI,Arial,sans-serif; }
+  .cta a.btn { display:inline-block; margin-top:8px; background:var(--violet); color:#fff; padding:11px 20px; border-radius:11px; text-decoration:none; font-weight:700; }
+  footer { max-width:720px; margin:0 auto; padding:0 20px 40px; color:var(--muted); font:14px/1.5 system-ui,Segoe UI,Arial,sans-serif; }
+</style>
+</head>
+<body>
+<div class="bar"><div class="in"><a href="../">Oguh Chidiebube Kenneth</a><a class="back" href="../#writing">All writing</a></div></div>
+<main>
+<span class="tag">Payments infrastructure</span>
+<h1>Never guess with money: why a payment system must be able to say &quot;unknown&quot;</h1>
+<div class="meta">By Oguh Chidiebube Kenneth · 21 October 2026</div>
+<p>You ask a bank to pay ₦50,000. The connection drops. No answer comes back. Did the payment happen?</p>
+<p>You do not know. And that is the hard part of money software: there are two easy answers, and both are wrong.</p>
+<ul>
+<li><strong>Say "failed" and try again.</strong> If the first payment did go through, you have now paid twice.</li>
+<li><strong>Say "paid".</strong> If it did not go through, the supplier is unpaid and your records are wrong.</li>
+</ul>
+<h2>The honest third answer</h2>
+<p>A payment system needs a third state: <strong>unknown</strong>. It means: "I asked, I did not get an answer, and I am going to find out." It is not a failure of the system. It is the system refusing to pretend.</p>
+<p>A payment is not a yes/no value. It moves through states, and one of them is "I do not know yet". In Zentrix, a payment that is in that state is marked as an unknown outcome, and the dashboard says so: "outcome unknown, being checked".</p>
+<h2>How "unknown" gets resolved</h2>
+<ul>
+<li><strong>One key per payment.</strong> Every payment carries a unique key. If you ask again with the same key, you get the same payment back, not a second one. Asking twice is harmless.</li>
+<li><strong>Check, do not retry blindly.</strong> The system asks the bank what happened, and settles the record when it knows.</li>
+<li><strong>Switch providers only when sure.</strong> If a provider fails and you are <em>certain</em> nothing was sent, trying a second provider is safe. If the outcome is unknown, switching is exactly how a payment gets made twice. Zentrix switches only in the first case.</li>
+</ul>
+<h2>Why this matters for anyone building data systems</h2>
+<p>This is a data-modelling lesson as much as a payments one. If a field can only be true or false, the system has to lie whenever the truth is "not known yet". Model the third state on purpose, and a whole class of money bugs disappears.</p>
+<p>It matters most wherever bank connections are unreliable, which is why we are building for Nigeria first.</p>
+<div class="cta"><strong>See it in action.</strong> Kaldrix and Zentrix have a live demo on a pretend bank, so no real money moves. One button plays the whole story in about 30 seconds.<br><a class="btn" href="https://kennzyoguh-lang.github.io/kaldrix-zentrix/" target="_blank" rel="noopener">Meet Kaldrix and Zentrix</a></div>
+</main>
+<footer>© 2026 Kaldrix. All rights reserved. A test service and a first version, with no independent security review.</footer>
+</body>
+</html>
